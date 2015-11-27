@@ -185,11 +185,16 @@ public class EstudianteTFG {
 	 */
 	@Override
 	public String toString() {
-		return "nombre=" + nombre + ", apellidos=" + apellido1 +" "+ apellido2
-				+ ", tema del TFG=" + tema + ", director=" + tutor1 
-				+ ", co-director=" + tutor2 + ", estado=" + estado
+		String cad= "Nombre del estudiante: " + nombre +' '+apellido1+' '+apellido2+ "\n"
+				+ "Tema del TFG: " + tema + "\n"
+				+ "Director: " + tutor1+"\n";
+				if(tutor2!=null) {
+					cad+="Co-director: "+tutor2;
+				}
+				cad +="estado=" + estado
 				+ ", fecha de presentacion=" + fechaPresentacion 
 				+ ", calificacion=" + calificacion + "]";
+				return cad;
 	}
 	
 }

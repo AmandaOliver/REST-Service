@@ -75,7 +75,7 @@ public List<EstudianteTFG> getAll() throws Exception{
 		      String tutor1= resultSet.getString("tutor1");
 		      estudiante.setTutor1(tutor1);
 		      String tutor2= resultSet.getString("tutor2");
-		      if(tutor2!=null) estudiante.setTutor2(tutor2);
+		      estudiante.setTutor2(tutor2);
 		      String estado= resultSet.getString("estado");
 		      estudiante.setEstado(EstudianteTFG.Estado.valueOf(estado));
 		      if(EstudianteTFG.Estado.valueOf(estado)==EstudianteTFG.Estado.PRESENTADO) {
@@ -136,7 +136,7 @@ public EstudianteTFG getEstudiante(String apellidos) throws Exception{
 	      String tutor1= resultSet.getString("tutor1");
 	      estudiante.setTutor1(tutor1);
 	      String tutor2= resultSet.getString("tutor2");
-	      if(tutor2!=null) estudiante.setTutor2(tutor2);
+	      estudiante.setTutor2(tutor2);
 	      String estado= resultSet.getString("estado");
 	      estudiante.setEstado(EstudianteTFG.Estado.valueOf(estado));
 	      if(EstudianteTFG.Estado.valueOf(estado)==EstudianteTFG.Estado.PRESENTADO) {
