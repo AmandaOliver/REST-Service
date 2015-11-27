@@ -189,12 +189,14 @@ public class EstudianteTFG {
 				+ "Tema del TFG: " + tema + "\n"
 				+ "Director: " + tutor1+"\n";
 				if(tutor2!=null) {
-					cad+="Co-director: "+tutor2;
+					cad+="Co-director: "+tutor2+"\n";
 				}
-				cad +="estado=" + estado
-				+ ", fecha de presentacion=" + fechaPresentacion 
-				+ ", calificacion=" + calificacion + "]";
-				return cad;
+				if(estado.toString()=="ENDESARROLLO") cad+= "Estado: En Desarrollo\n";
+				else {
+					cad+="Estado: Presentado\nFecha de Presentación: "+fechaPresentacion+"\n"
+							+"Calificación: "+calificacion+"\n";
+				}
+		return cad;
 	}
 	
 }
