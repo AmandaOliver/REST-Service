@@ -228,15 +228,19 @@ public void addEstudiante(EstudianteTFG estudiante) throws Exception{
 		 connect = DriverManager.getConnection("jdbc:mysql://localhost/Estudiantes?"
 		              + "user=sqluser&password=sqluserpw");
 		 statement = connect.createStatement();
-		 
+
 		 //Consulta(insert) que se desea realizar
 		 String insert=" insert into estudiantes values(default, '"+estudiante.getNombre()+"',"
 		 		+ " '"+estudiante.getApellido1()+"', '"+estudiante.getApellido2()+"', '"
 				+ estudiante.getTema()+"', "
 		 		+ "'"+estudiante.getTutor1()+"', '"+estudiante.getTutor2()+"', '"
-				+ estudiante.getEstado()+"', "
-		 		+ "'"+new java.sql.Date(estudiante.getFechaPresentacion().getTime())+"', "
-		 		+ estudiante.getCalificacion()+")";
+				+ estudiante.getEstado()+"', ";
+		 if(estudiante.getFechaPresentacion()!=null){
+			 insert+="'"+new java.sql.Date(estudiante.getFechaPresentacion().getTime())+"', ";
+		 }
+		 else insert+="null,";
+		 		
+		 		insert+= estudiante.getCalificacion()+")";
 		 
 		 //Ejecución del delete
 		 statement.execute(insert);
