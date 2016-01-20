@@ -168,14 +168,43 @@ public void updateEstudiante(String apellidos, EstudianteTFG estudiante) throws 
 	 connect = DriverManager.getConnection("jdbc:mysql://localhost/Estudiantes?"
 	              + "user=sqluser&password=sqluserpw");
 	 statement = connect.createStatement();
-	 
+	
 	 //Consulta (update) que se desea realizar
-	 String update= "update Estudiantes.estudiantes "
-       	+ "set tema='"+estudiante.getTema()+"', estado='"+estudiante.getEstado()+"',"
-		+" fechaPresentacion='"+new java.sql.Date(estudiante.getFechaPresentacion().getTime())+"', "
-		+ " calificacion='"+estudiante.getCalificacion()+"' where concat(apellido1, apellido2) = '"
-		+ apellidos+"'";
+	 boolean hay_algo=false;
+	 String update= "update Estudiantes.estudiantes set ";
+    
+	 if (estudiante.getTema()!=""){
+		 update+="tema='"+estudiante.getTema()+"'";
+		 hay_algo=true;
+	 }
+	 if(estudiante.getEstado()!=EstudianteTFG.Estado.NULL && hay_algo){
+		 update+=", estado='"+estudiante.getEstado()+"'";
+	 }
+	 else if (estudiante.getEstado()!=EstudianteTFG.Estado.NULL && !hay_algo){
+		 update+="estado='"+estudiante.getEstado()+"'";
+		 hay_algo=true;
+	 }
+	
+	 if(estudiante.getFechaPresentacion()!=null && hay_algo){
+		 update+=", fechaPresentacion='"+new java.sql.Date(estudiante.getFechaPresentacion().getTime())+"'";
+	 }
+	 else if(estudiante.getFechaPresentacion()!=null && !hay_algo){
+		 update+="fechaPresentacion='"+new java.sql.Date(estudiante.getFechaPresentacion().getTime())+"'";
+		 hay_algo=true;
+	 }
 	 
+	 if(estudiante.getCalificacion()!=0.0f && hay_algo){		
+		 update+=", calificacion='"+estudiante.getCalificacion()+"'";
+	 }
+	 else if(estudiante.getCalificacion()!=0.0f && !hay_algo){
+		 update+="calificacion='"+estudiante.getCalificacion()+"'";
+		 hay_algo=true;
+	 }
+	 
+	 update+=" where concat(apellido1, apellido2) = '"
+		+ apellidos+"';";
+	 
+	
 	 //Ejecución del update
 	 statement.execute(update);
 	 

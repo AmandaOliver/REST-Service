@@ -15,7 +15,7 @@ public class EstudianteTFG {
 	private String tema;
 	private String tutor1, tutor2;
 	enum Estado{
-		ENDESARROLLO, PRESENTADO;
+		ENDESARROLLO, PRESENTADO, NULL;
 	}
 	private Estado estado;
 	private Date fechaPresentacion;
